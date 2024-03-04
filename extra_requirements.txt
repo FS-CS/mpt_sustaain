@@ -1,0 +1,6 @@
+langchain
+langchain-openai
+polars
+pandasai[langchain]
+pysqlite3-binary
+
