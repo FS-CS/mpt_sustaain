@@ -5,13 +5,17 @@
 
 L'exécution de certaines parties de code est basée sur l'utilisation de LLMs open-source d'OpenAI. Leur utilisation requiert la présence d'un fichier `openai_api_key.txt` contenant un token d'accès OpenAI qui peut être créé [ici](https://platform.openai.com/api-keys) et placé dans le même dossier que ce fichier et le Dockerfile. Si l'utilisateur ne souhaite pas fournir un token OpenAI, il est tout de même requis de placer un fichier vide `openai_api_key.txt`.
 
-Commencez par construire l'image (qui est lourde, environ 20GB) :
+Commencez par récupérer l'image de base contenant la librairie `unstructured` (qui est lourde, environ 20GB):
+
+`docker pull downloads.unstructured.io/unstructured-io/unstructured:latest`
+
+Vous pouvez ensuite construire l'image que nous utiliserons :
 
 `docker build -t mpt_img .`
 
 Démarrez ensuite un container exposant le port 8000 (utilisez-en un autre côté hôte s'il est déjà utilisé) :
 
-`docker run docker run -it -p 8000:8000 mpt-img`
+`docker run -it -p 8000:8000 mpt_img`
 
 Ce container lance un serveur Jupyter Lab qui peut être ouvert dans une navigateur Web à l'adresse `localhost:8000/` (modifier le port si nécessaire).
 
